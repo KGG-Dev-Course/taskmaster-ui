@@ -1,27 +1,66 @@
-# TaskmasterUi
+# Task Management Frontend with Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+This project is a frontend application for task management built using Angular 17. It provides a user interface to manage tasks, including adding, editing, deleting, and organizing tasks.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Task Listing**: View a list of tasks with details like title, description, due date, etc.
+- **Add Task**: Ability to add new tasks with relevant details.
+- **Edit Task**: Modify existing task details.
+- **Delete Task**: Remove tasks from the list.
+- **Task Organization**: Categorize tasks, set priorities, and assign statuses.
 
-## Code scaffolding
+## Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular 17**: Frontend framework for building the application.
+- **[Any other libraries or frameworks you might be using]**
+- **[Any additional technologies you're incorporating]**
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone the repository:
 
-## Running unit tests
+   ```bash
+   git clone <repository_url>
+   cd task-management-angular
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Install dependencies:
 
-## Running end-to-end tests
+   ```bash
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Run the application:
 
-## Further help
+   ```bash
+   ng serve
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+## Usage
+
+[Add instructions on how to use the application, navigate through tasks, perform CRUD operations, etc.]
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature/your-feature-name).
+3. Make your changes and commit them (git commit -am 'Add new feature').
+4. Push to the branch (git push origin feature/your-feature-name).
+5. Create a new Pull Request.
+
+## License
+
+[Include information about the license you're using for this project.]
+
+## Acknowledgements
+
+[Give credit to any resources, libraries, or tutorials that you've used or found helpful during the development of this project.]
+
+## Contact
+
+[Provide your contact information if you want others to reach out to you regarding the project.]
