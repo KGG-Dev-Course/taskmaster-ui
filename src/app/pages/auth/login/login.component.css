@@ -1,0 +1,25 @@
+.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .login-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .login-card-action {
+      display: flex;
+      gap: 10px;
+      padding: 0 20px;
+    }
+  }
+}
