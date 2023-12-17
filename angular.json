@@ -5,7 +5,17 @@
   "projects": {
     "taskmaster-ui": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -25,7 +35,6 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -58,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "taskmaster-ui:build:production"
+              "buildTarget": "untitled:build:production"
             },
             "development": {
-              "buildTarget": "taskmaster-ui:build:development"
+              "buildTarget": "untitled:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -69,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "taskmaster-ui:build"
+            "buildTarget": "untitled:build"
           }
         },
         "test": {
@@ -85,7 +94,6 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -93,8 +101,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
