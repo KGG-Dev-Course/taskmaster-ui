@@ -1,7 +1,0 @@
-.main-body {
-  height: 100vh;
-
-  .body-section {
-    height: calc(100vh - 64px);
-  }
-}
