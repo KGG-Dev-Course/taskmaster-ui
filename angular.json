@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "untitled:build:production"
+              "buildTarget": "taskmaster-ui:build:production"
             },
             "development": {
-              "buildTarget": "untitled:build:development"
+              "buildTarget": "taskmaster-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "untitled:build"
+            "buildTarget": "taskmaster-ui:build"
           }
         },
         "test": {
@@ -101,5 +101,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
