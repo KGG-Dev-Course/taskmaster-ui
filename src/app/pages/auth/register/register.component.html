@@ -1,0 +1,20 @@
+<form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()" class="flex flex-col items-center gap-3 w-full p-2">
+  <input type="text" pInputText formControlName="username" />
+  <div>
+    <div *ngIf="registerForm.get('username')?.hasError('required')">Username is required.</div>
+  </div>
+
+  <input type="email" pInputText formControlName="email" />
+  <div>
+    <div *ngIf="registerForm.get('email')?.hasError('required')">Email is required.</div>
+    <div *ngIf="registerForm.get('email')?.hasError('email')">Please enter a valid email.</div>
+  </div>
+
+  <input type="password" pInputText formControlName="password" />
+  <div>
+    <div *ngIf="registerForm.get('password')?.hasError('required')">Password is required.</div>
+  </div>
+
+  <button type="submit" pButton label="Submit" class="p-button-success"></button>
+  <a routerLink="/auth/login" class="p-button font-bold">Go to login</a>
+</form>
