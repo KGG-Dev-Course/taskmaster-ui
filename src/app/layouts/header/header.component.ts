@@ -19,6 +19,11 @@ export class HeaderComponent {
             label: 'List',
             icon: 'pi pi-fw pi-list',
             routerLink: '/ticket/list'
+          },
+          {
+            label: 'Add',
+            icon: 'pi pi-fw pi-plus',
+            routerLink: '/ticket/add'
           }
         ]
       }

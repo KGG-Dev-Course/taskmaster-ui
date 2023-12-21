@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { Ticket } from '../../../models/ticket';
 import { TicketService } from '../../../services/ticket/ticket.service';
 
@@ -31,8 +32,13 @@ export class TicketListComponent {
   }
 
   loadData(): void {
-    this.ticketService.getAllTickets().subscribe((tickets) => {
+    this.ticketService.getAllTickets().subscribe((tickets: Ticket[]) => {
       this.tickets = tickets;
+      this.tickets.forEach((ticket) => {
+        ticket.dueDate = new Date(<Date>ticket.dueDate);
+        ticket.createdAt = new Date(<Date>ticket.createdAt);
+        ticket.updatedAt = new Date(<Date>ticket.updatedAt);
+      });
     });
   }
 
@@ -89,5 +95,10 @@ export class TicketListComponent {
   showDetailDialog(ticket: Ticket) {
     this.detailTicket = ticket;
     this.showDetail = true;
+  }
+
+
+  filterTable(table: Table, event: any) {
+    table.filterGlobal(event.target.value, 'contains')
   }
 }
