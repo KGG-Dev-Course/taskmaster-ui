@@ -1,10 +1,14 @@
 <div class="card">
-  <p-menubar [model]="menus" [autoDisplay]="false">
+  <p-menubar [model]="menus" [autoDisplay]="false" *ngIf="showMenu()">
     <ng-template pTemplate="start">
       <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-2" alt="logo" />
     </ng-template>
     <ng-template pTemplate="end">
-      <input type="text" pInputText placeholder="Search" class="w-full" />
+      <div class="flex items-end gap-2">
+        <input type="text" pInputText placeholder="Search" class="w-full" />
+        <p-menu #menu [model]="rightMenus" [popup]="true"></p-menu>
+        <p-avatar class="cursor-pointer" icon="pi pi-user" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle" (click)="menu.toggle($event)"></p-avatar>
+      </div>
     </ng-template>
   </p-menubar>
 </div>
