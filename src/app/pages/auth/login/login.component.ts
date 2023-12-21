@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../../services/auth/auth.service';
 
@@ -13,8 +14,9 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private messageService: MessageService,
     private authService: AuthService,
-    private messageService: MessageService
+    private router: Router
   ) {
   }
 
@@ -32,13 +34,10 @@ export class LoginComponent {
 
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
-          // Handle successful login response
-          console.log('Login Successful:', data);
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successful' });
+          this.router.navigate(['/ticket/list']);
         },
         (error) => {
-          // Handle error response from login attempt
-          console.error('Login Error:', error);
           this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.errorMessage });
         }
       );

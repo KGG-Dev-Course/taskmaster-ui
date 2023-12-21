@@ -1,0 +1,107 @@
+<div class="mt-4 flex flex-col gap-2 w-full">
+  <div class="flex justify-between items-end">
+    <p-breadcrumb class="max-w-full" [model]="breadcrumbs" [home]="homeBreadcrumb"></p-breadcrumb>
+
+  </div>
+  <div class="flex flex-col w-full">
+    <p-table
+      #dataTable
+      [value]="tickets"
+      [scrollable]="true"
+      scrollHeight="600px"
+      selectionMode="single"
+      [paginator]="true"
+      [first]="first"
+      [rows]="rows"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      (onPage)="pageChange($event)"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [globalFilterFields]="['title', 'dueDate', 'createdAt', 'updatedAt', 'status']"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex flex-row items-end gap-2">
+          <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="dataTable.clear()"></button>
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="filterTable(dataTable, $event)" placeholder="Search keyword" />
+          </span>
+          <p-button routerLink="/ticket/add" icon="pi pi-plus" label="Create"></p-button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width:3rem">#</th>
+          <th>
+            <div class="flex items-center">
+              Title
+              <p-columnFilter type="text" field="title" display="menu"></p-columnFilter>
+            </div>
+          </th>
+          <th style="width:10%">
+            <div class="flex items-center">
+              DueDate
+              <p-columnFilter type="date" field="dueDate" display="menu"></p-columnFilter>
+            </div>
+          </th>
+          <th style="width:10%">
+            <div class="flex items-center">
+              CreatedAt
+              <p-columnFilter type="date" field="createdAt" display="menu"></p-columnFilter>
+            </div>
+          </th>
+          <th style="width:10%">
+            <div class="flex items-center">
+              UpdatedAt
+              <p-columnFilter type="date" field="updatedAt" display="menu"></p-columnFilter>
+            </div>
+          </th>
+          <th style="width:10%">
+            <div class="flex items-center">
+              Status
+              <p-columnFilter field="status" matchMode="equals" display="menu">
+                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                  <p-dropdown [ngModel]="value" [options]="['Pending', 'Open', 'InProgress', 'Complete']" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
+                    <ng-template let-option pTemplate="item">
+                      <p-tag [value]="option" [severity]="getSeverity(option)"></p-tag>
+                    </ng-template>
+                  </p-dropdown>
+                </ng-template>
+              </p-columnFilter>
+            </div>
+          </th>
+          <th style="width:100px"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-ticket let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td><p-button [link]="true" (onClick)="showDetailDialog(ticket)">{{ ticket.title }}</p-button></td>
+          <td>{{ ticket.dueDate | date: 'MM/dd/yyyy' }}</td>
+          <td>{{ ticket.createdAt | date: 'MM/dd/yyyy' }}</td>
+          <td>{{ ticket.updatedAt | date: 'MM/dd/yyyy' }}</td>
+          <td><p-tag [value]="ticket.status" [severity]="getSeverity(ticket.status)"></p-tag></td>
+          <td>
+            <div class="flex gap-2">
+              <p-button [routerLink]="'/ticket/edit/' + ticket.id" icon="pi pi-pencil" [rounded]="true" [text]="true" severity="info"></p-button>
+              <p-button icon="pi pi-times" [rounded]="true" [text]="true" severity="danger" (click)="confirmDelete($event, ticket.id)"></p-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="7">
+            <div class="flex justify-center w-full">No rows found.</div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-dialog [header]="detailTicket?.title" [(visible)]="showDetail" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+  <div class="ql-snow">
+    <div class="ql-editor" [innerHTML]="detailTicket?.description">
+    </div>
+  </div>
+</p-dialog>
