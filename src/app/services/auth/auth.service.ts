@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   /**
@@ -38,7 +38,7 @@ export class AuthService {
    * @param credentials
    */
   public login(credentials: { username: string; password: string }): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/Auth/login`, credentials).pipe(
+    return this.http.post(`${environment.apiUrl}/Auth/login`, credentials).pipe(
       switchMap((response: any) => {
         this.accessToken = response.token;
 
@@ -49,11 +49,11 @@ export class AuthService {
   }
 
   /**
-   * Login
+   * Register
    *
    * @param user
    */
   public register(user: { username: string; email: string; password: string; }): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}/Auth/register`, user);
+    return this.http.post(`${environment.apiUrl}/Auth/register`, user);
   }
 }

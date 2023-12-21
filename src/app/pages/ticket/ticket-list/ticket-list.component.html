@@ -1,0 +1,51 @@
+<div class="mt-4 flex flex-col gap-2 w-full">
+  <div class="flex justify-between items-end">
+    <p-breadcrumb class="max-w-full" [model]="breadcrumbs" [home]="homeBreadcrumb"></p-breadcrumb>
+    <div class="flex flex-row gap-2">
+      <p-button routerLink="/ticket/add" icon="pi pi-plus" label="Create" size="small"></p-button>
+    </div>
+  </div>
+  <div class="flex flex-col w-full">
+    <p-table
+      [value]="tickets"
+      selectionMode="single"
+      [paginator]="true"
+      [first]="first"
+      [rows]="rows"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      (onPage)="pageChange($event)"
+      [rowsPerPageOptions]="[10, 25, 50]"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width:3rem">#</th>
+          <th>Title</th>
+          <th style="width:20%">DueDate</th>
+          <th style="width:20%">Status</th>
+          <th style="width:10%"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-ticket let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td><p-button [link]="true" (onClick)="showDetailDialog(ticket)">{{ ticket.title }}</p-button></td>
+          <td>{{ ticket.dueDate | date }}</td>
+          <td><p-tag [value]="ticket.status" [severity]="getSeverity(ticket.status)"></p-tag></td>
+          <td>
+            <div class="flex gap-2">
+              <p-button [routerLink]="'/ticket/edit/' + ticket.id" icon="pi pi-pencil" [rounded]="true" [text]="true" severity="info"></p-button>
+              <p-button icon="pi pi-times" [rounded]="true" [text]="true" severity="danger" (click)="confirmDelete($event, ticket.id)"></p-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-dialog [header]="detailTicket?.title" [(visible)]="showDetail" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+  <div class="ql-snow">
+    <div class="ql-editor" [innerHTML]="detailTicket?.description">
+    </div>
+  </div>
+</p-dialog>

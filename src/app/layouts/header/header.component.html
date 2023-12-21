@@ -1,1 +1,10 @@
-<p-toast></p-toast>
+<div class="card">
+  <p-menubar [model]="menus" [autoDisplay]="false">
+    <ng-template pTemplate="start">
+      <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-2" alt="logo" />
+    </ng-template>
+    <ng-template pTemplate="end">
+      <input type="text" pInputText placeholder="Search" class="w-full" />
+    </ng-template>
+  </p-menubar>
+</div>
