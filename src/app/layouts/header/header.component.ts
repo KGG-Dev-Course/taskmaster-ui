@@ -18,6 +18,22 @@ export class HeaderComponent {
   ngOnInit() {
     this.menus = [
       {
+        label: 'User',
+        icon: 'pi pi-fw pi-users',
+        items: [
+          {
+            label: 'List',
+            icon: 'pi pi-fw pi-list',
+            routerLink: '/user/list'
+          },
+          {
+            label: 'Add',
+            icon: 'pi pi-fw pi-plus',
+            routerLink: '/user/add'
+          }
+        ]
+      },
+      {
         label: 'Ticket',
         icon: 'pi pi-fw pi-ticket',
         items: [

@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4 flex flex-col gap-5 w-full">
+  <div class="flex justify-between items-end">
+    <p-breadcrumb class="max-w-full" [model]="breadcrumbs" [home]="homeBreadcrumb"></p-breadcrumb>
+    <div class="flex flex-row gap-2">
+      <p-button type="submit" icon="pi pi-save" label="Save" size="small" severity="success"></p-button>
+      <p-button routerLink="/user/list" icon="pi pi-times" label="Cancel" size="small" severity="secondary"></p-button>
+    </div>
+  </div>
+  <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2">
+      <label for="userName">UserName</label>
+      <input type="text" id="userName" pInputText formControlName="userName" />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="email">Email</label>
+      <input type="email" id="email" pInputText formControlName="email" />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="email">Password</label>
+      <p-password id="password" formControlName="password" [toggleMask]="true">
+        <ng-template pTemplate="header">
+          <h6>Pick a password</h6>
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <p-divider></p-divider>
+          <p class="mt-2">Suggestions</p>
+          <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+            <li>At least one lowercase</li>
+            <li>At least one uppercase</li>
+            <li>At least one numeric</li>
+            <li>Minimum 8 characters</li>
+          </ul>
+        </ng-template>
+      </p-password>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="role">Role</label>
+      <p-dropdown id="role" [options]="['User', 'Admin']" placeholder="Select a Role" formControlName="role"></p-dropdown>
+    </div>
+  </div>
+</form>
