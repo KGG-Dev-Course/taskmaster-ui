@@ -8,14 +8,17 @@ import { AvatarModule } from 'primeng/avatar';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { ChipModule } from 'primeng/chip';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { PasswordModule } from 'primeng/password';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
@@ -30,6 +33,8 @@ import { TicketEditComponent } from './pages/ticket/ticket-edit/ticket-edit.comp
 import { TicketListComponent } from './pages/ticket/ticket-list/ticket-list.component';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
+import { UserListComponent } from './pages/user/user-list/user-list.component';
+import { UserAddComponent } from './pages/user/user-add/user-add.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,9 @@ import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-pas
     TicketListComponent,
     TicketAddComponent,
     TicketEditComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    UserListComponent,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +70,10 @@ import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-pas
     ConfirmDialogModule,
     MenuModule,
     AvatarModule,
-    CardModule
+    CardModule,
+    ChipModule,
+    PasswordModule,
+    DividerModule
   ],
   providers: [
     {

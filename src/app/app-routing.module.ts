@@ -6,6 +6,8 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { TicketAddComponent } from './pages/ticket/ticket-add/ticket-add.component';
 import { TicketEditComponent } from './pages/ticket/ticket-edit/ticket-edit.component';
 import { TicketListComponent } from './pages/ticket/ticket-list/ticket-list.component';
+import { UserAddComponent } from './pages/user/user-add/user-add.component';
+import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { AuthGuard } from './services/auth/guards/auth.guard';
 
 const routes: Routes = [
@@ -25,6 +27,14 @@ const routes: Routes = [
       { path: 'list', component: TicketListComponent },
       { path: 'add', component: TicketAddComponent },
       { path: 'edit/:id', component: TicketEditComponent }
+    ],
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'user',
+    children: [
+      { path: 'list', component: UserListComponent },
+      { path: 'add', component: UserAddComponent }
     ],
     canActivate: [AuthGuard]
   }

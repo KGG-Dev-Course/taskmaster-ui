@@ -23,6 +23,17 @@ export class AuthService {
     return localStorage.getItem('accessToken') ?? '';
   }
 
+  /**
+   * Setter & getter for role
+   */
+  set userRole(userRole: string) {
+    localStorage.setItem('userRole', userRole);
+  }
+
+  get userRole(): string {
+    return localStorage.getItem('userRole') ?? 'User';
+  }
+
   isTokenExpired(): boolean {
     try {
       const decodedToken: any = jwtDecode(this.accessToken);
@@ -45,6 +56,7 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/Auth/login`, credentials).pipe(
       switchMap((response: any) => {
         this.accessToken = response.token;
+        this.userRole = response.isAdmin ? 'Admin' : 'User';
 
         // Return a new observable with the response
         return of(response);
