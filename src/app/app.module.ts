@@ -4,13 +4,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { AvatarModule } from 'primeng/avatar';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CalendarModule } from 'primeng/calendar';
+import { CardModule } from 'primeng/card';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
+import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { TableModule } from 'primeng/table';
@@ -26,6 +29,7 @@ import { TicketAddComponent } from './pages/ticket/ticket-add/ticket-add.compone
 import { TicketEditComponent } from './pages/ticket/ticket-edit/ticket-edit.component';
 import { TicketListComponent } from './pages/ticket/ticket-list/ticket-list.component';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
+import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,8 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     HeaderComponent,
     TicketListComponent,
     TicketAddComponent,
-    TicketEditComponent
+    TicketEditComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,10 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     TagModule,
     EditorModule,
     DropdownModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    MenuModule,
+    AvatarModule,
+    CardModule
   ],
   providers: [
     {

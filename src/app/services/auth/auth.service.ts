@@ -32,6 +32,10 @@ export class AuthService {
     }
   }
 
+  isAuthenticated(): boolean {
+    return !this.isTokenExpired();
+  }
+
   /**
    * Login
    *
@@ -55,5 +59,13 @@ export class AuthService {
    */
   public register(user: { username: string; email: string; password: string; }): Observable<any> {
     return this.http.post(`${environment.apiUrl}/Auth/register`, user);
+  }
+
+  /**
+   * Logout
+   *
+   */
+  logout(): void {
+    localStorage.removeItem('accessToken');
   }
 }

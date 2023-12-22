@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +10,10 @@ import { MenuItem } from 'primeng/api';
 })
 export class HeaderComponent {
   menus: MenuItem[] = [];
+  rightMenus: MenuItem[] = [];
+
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
     this.menus = [
@@ -28,5 +34,28 @@ export class HeaderComponent {
         ]
       }
     ];
+
+    this.rightMenus = [
+      {
+        label: 'My profile',
+        icon: 'pi pi-user'
+      },
+      {
+        label: 'Log out',
+        icon: 'pi pi-sign-out',
+        command: () => {
+          this.logout();
+        }
+      }
+    ]
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/auth/login']);
+  }
+
+  showMenu(): boolean {
+    return this.authService.isAuthenticated();
   }
 }
