@@ -14,11 +14,14 @@ import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
+import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
+import { PanelModule } from 'primeng/panel';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { PasswordModule } from 'primeng/password';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
@@ -35,6 +38,8 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { UserAddComponent } from './pages/user/user-add/user-add.component';
+import { ProfileViewComponent } from './pages/profile/profile-view/profile-view.component';
+import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,9 @@ import { UserAddComponent } from './pages/user/user-add/user-add.component';
     TicketEditComponent,
     ForgotPasswordComponent,
     UserListComponent,
-    UserAddComponent
+    UserAddComponent,
+    ProfileViewComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +80,10 @@ import { UserAddComponent } from './pages/user/user-add/user-add.component';
     CardModule,
     ChipModule,
     PasswordModule,
-    DividerModule
+    DividerModule,
+    PanelModule,
+    InputMaskModule,
+    RadioButtonModule
   ],
   providers: [
     {

@@ -55,4 +55,12 @@ export class UserService {
   deleteUser(id: string): Observable<any> {
     return this.http.delete<any>(`${environment.apiUrl}/User/${id}`);
   }
+
+  /**
+   * Get mine user
+   *
+   */
+  getMineUser(): Observable<User> {
+    return this.http.get<User>(`${environment.apiUrl}/User/mine`);
+  }
 }
