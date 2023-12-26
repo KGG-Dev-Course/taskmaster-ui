@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.component';
+import { ProfileViewComponent } from './pages/profile/profile-view/profile-view.component';
 import { TicketAddComponent } from './pages/ticket/ticket-add/ticket-add.component';
 import { TicketEditComponent } from './pages/ticket/ticket-edit/ticket-edit.component';
 import { TicketListComponent } from './pages/ticket/ticket-list/ticket-list.component';
@@ -35,6 +37,14 @@ const routes: Routes = [
     children: [
       { path: 'list', component: UserListComponent },
       { path: 'add', component: UserAddComponent }
+    ],
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile',
+    children: [
+      { path: 'view', component: ProfileViewComponent },
+      { path: 'edit', component: ProfileEditComponent }
     ],
     canActivate: [AuthGuard]
   }

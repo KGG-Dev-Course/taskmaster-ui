@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-row gap-2 w-full">
+  <p-panel header="Profile Picture" class="w-[600px]">
+    <div class="flex flex-col gap-4 items-center w-full">
+      <div>
+        <img class="w-40 h-40 rounded-full object-cover border border-solid border-black" [src]="imageUrl" alt="">
+      </div>
+      <p>JPG or PNG no larger than 5 MB</p>
+      <input #fileInput type="file" (change)="onFileSelected($event)" hidden="hidden" />
+      <p-button severity="info" (click)="fileInput.click()">Upload new image</p-button>
+    </div>
+  </p-panel>
+
+  <p-panel header="Account Details" class="w-full">
+    <div class="grid grid-cols-2 gap-4 w-full">
+      <div class="flex flex-col gap-2">
+        <label for="userName">Username</label>
+        <input pInputText id="userName" formControlName="userName" [readOnly]="true" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="email">Email</label>
+        <input pInputText type="email" id="email" formControlName="email" [readOnly]="true" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="firstName">First name</label>
+        <input pInputText id="firstName" formControlName="firstName" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="lastName">Last name</label>
+        <input pInputText id="lastName" formControlName="lastName" />
+      </div>
+      <div class="grid grid-cols-3 gap-2 col-span-2">
+        <div class="flex flex-col gap-2">
+          <label for="phoneNumber">Phone number</label>
+          <p-inputMask mask="(999) 999-9999" placeholder="(999) 999-9999" id="phoneNumber" formControlName="phoneNumber"></p-inputMask>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="birthday">Birthday</label>
+          <p-inputMask mask="99/99/9999" placeholder="99/99/9999" slotChar="mm/dd/yyyy" id="birthday" formControlName="birthday"></p-inputMask>
+        </div>
+        <div class="flex flex-row items-end pb-3 gap-6">
+          <div class="flex items-center">
+            <p-radioButton value="M" formControlName="gender" id="genderMan"></p-radioButton>
+            <label for="genderMan" class="ml-2">Man</label>
+          </div>
+          <div class="flex items-center">
+            <p-radioButton value="W" formControlName="gender" id="genderWoman"></p-radioButton>
+            <label for="genderWoman" class="ml-2">Woman</label>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2 col-span-2">
+        <label for="aboutMe">About Me</label>
+        <p-editor class="ng-invalid ng-dirty" id="aboutMe" [style]="{ height: '260px' }" formControlName="aboutMe"></p-editor>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <div class="flex justify-end gap-2">
+        <p-button type="submit" severity="success">Submit</p-button>
+        <p-button routerLink="/profile/view" severity="secondary">Cancel</p-button>
+      </div>
+    </ng-template>
+  </p-panel>
+</form>

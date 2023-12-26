@@ -54,7 +54,8 @@ export class HeaderComponent {
     this.rightMenus = [
       {
         label: 'My profile',
-        icon: 'pi pi-user'
+        icon: 'pi pi-user',
+        routerLink: '/profile/view'
       },
       {
         label: 'Log out',

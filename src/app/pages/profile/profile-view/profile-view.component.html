@@ -1,0 +1,53 @@
+<div class="flex flex-row gap-2 w-full">
+  <p-panel header="Profile Picture" class="w-[600px]">
+    <div class="flex flex-col gap-4 items-center w-full">
+      <div>
+        <img class="w-40 h-40 rounded-full object-cover border border-solid border-black" [src]="imageUrl" alt="">
+      </div>
+    </div>
+  </p-panel>
+
+  <p-panel header="Account Details" class="w-full">
+    <div class="grid grid-cols-2 gap-4 w-full">
+      <div class="flex flex-col gap-2">
+        <label>Username</label>
+        <p class="font-bold text-md">{{user?.userName}}</p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label>Email</label>
+        <p class="font-bold text-md">{{user?.email}}</p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label>First name</label>
+        <p class="font-bold text-md">{{profile?.firstName}}</p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label>Last name</label>
+        <p class="font-bold text-md">{{profile?.lastName}}</p>
+      </div>
+      <div class="grid grid-cols-3 gap-2 col-span-2">
+        <div class="flex flex-col gap-2">
+          <label>Phone number</label>
+          <p class="font-bold text-md">{{profile?.phoneNumber}}</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label>Birthday</label>
+          <p class="font-bold text-md">{{profile?.birthday}}</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label>Gender</label>
+          <p class="font-bold text-md">{{profile?.gender}}</p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2 col-span-2">
+        <label>About Me</label>
+        <p class="font-bold text-md" [innerHTML]="profile?.aboutMe"></p>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <div class="flex justify-end gap-2">
+        <p-button routerLink="/profile/edit" severity="info">Edit</p-button>
+      </div>
+    </ng-template>
+  </p-panel>
+</div>
