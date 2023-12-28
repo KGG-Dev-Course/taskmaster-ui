@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
+    "angular-oauth2-oidc": "^17.0.1",
     "jwt-decode": "^4.0.0",
     "primeicons": "^6.0.1",
     "primeng": "^17.2.0",
