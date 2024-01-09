@@ -1,3 +1,9 @@
+import {
+  GoogleInitOptions,
+  GoogleLoginProvider,
+  GoogleSigninButtonModule,
+  SocialAuthServiceConfig
+} from '@abacritt/angularx-social-login';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +20,8 @@ import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
+import { FileUploadModule } from 'primeng/fileupload';
+import { GalleriaModule } from 'primeng/galleria';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
@@ -25,6 +33,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
+import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +49,12 @@ import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { UserAddComponent } from './pages/user/user-add/user-add.component';
 import { ProfileViewComponent } from './pages/profile/profile-view/profile-view.component';
 import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.component';
+import { GalleryListComponent } from './pages/gallery/gallery-list/gallery-list.component';
+
+const googleLoginOptions: GoogleInitOptions = {
+  oneTapEnabled: false,
+  scopes: 'https://www.googleapis.com/auth/photoslibrary.readonly'
+};
 
 @NgModule({
   declarations: [
@@ -54,7 +69,8 @@ import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.
     UserListComponent,
     UserAddComponent,
     ProfileViewComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    GalleryListComponent
   ],
   imports: [
     BrowserModule,
@@ -83,9 +99,30 @@ import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.
     DividerModule,
     PanelModule,
     InputMaskModule,
-    RadioButtonModule
+    RadioButtonModule,
+    GoogleSigninButtonModule,
+    GalleriaModule,
+    FileUploadModule
   ],
   providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.googleClientId,
+              googleLoginOptions
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

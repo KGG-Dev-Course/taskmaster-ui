@@ -11,37 +11,37 @@
     <div class="grid grid-cols-2 gap-4 w-full">
       <div class="flex flex-col gap-2">
         <label>Username</label>
-        <p class="font-bold text-md">{{user?.userName}}</p>
+        <span class="font-bold text-md">{{user?.userName}}</span>
       </div>
       <div class="flex flex-col gap-2">
         <label>Email</label>
-        <p class="font-bold text-md">{{user?.email}}</p>
+        <span class="font-bold text-md">{{user?.email}}</span>
       </div>
       <div class="flex flex-col gap-2">
         <label>First name</label>
-        <p class="font-bold text-md">{{profile?.firstName}}</p>
+        <span class="font-bold text-md">{{profile?.firstName}}</span>
       </div>
       <div class="flex flex-col gap-2">
         <label>Last name</label>
-        <p class="font-bold text-md">{{profile?.lastName}}</p>
+        <span class="font-bold text-md">{{profile?.lastName}}</span>
       </div>
       <div class="grid grid-cols-3 gap-2 col-span-2">
         <div class="flex flex-col gap-2">
           <label>Phone number</label>
-          <p class="font-bold text-md">{{profile?.phoneNumber}}</p>
+          <span class="font-bold text-md">{{profile?.phoneNumber}}</span>
         </div>
         <div class="flex flex-col gap-2">
           <label>Birthday</label>
-          <p class="font-bold text-md">{{profile?.birthday}}</p>
+          <span class="font-bold text-md">{{profile?.birthday}}</span>
         </div>
         <div class="flex flex-col gap-2">
           <label>Gender</label>
-          <p class="font-bold text-md">{{profile?.gender}}</p>
+          <span class="font-bold text-md">{{profile?.gender}}</span>
         </div>
       </div>
       <div class="flex flex-col gap-2 col-span-2">
         <label>About Me</label>
-        <p class="font-bold text-md" [innerHTML]="profile?.aboutMe"></p>
+        <span class="font-bold text-md" [innerHTML]="profile?.aboutMe"></span>
       </div>
     </div>
     <ng-template pTemplate="footer">

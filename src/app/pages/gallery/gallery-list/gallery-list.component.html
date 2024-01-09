@@ -1,0 +1,31 @@
+<div class="flex flex-row gap-2 w-full">
+  <p-panel header="Upload photo" class="w-[800px]">
+    <div class="flex flex-col gap-4 items-center w-full">
+      <p-fileUpload name="files" [url]="uploadURL" (onUpload)="onUpload($event)" (onBeforeUpload)="onBeforeUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+          </ul>
+        </ng-template>
+      </p-fileUpload>
+    </div>
+  </p-panel>
+
+  <p-panel header="Photos" class="w-full">
+    <div class="card">
+      <div class="flex flex-col gap-2.5 w-full">
+        <p-button (click)="connect()" severity="help">Connect</p-button>
+        <p-galleria [value]="images" [showItemNavigators]="true" [responsiveOptions]="responsiveOptions" [circular]="true" [numVisible]="5">
+          <ng-template pTemplate="item" let-item>
+            <img [src]="item.itemImageSrc" class="w-full h-[450px] block" />
+          </ng-template>
+          <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+              <img [src]="item.thumbnailImageSrc" class="w-24 h-16 object-cover block" />
+            </div>
+          </ng-template>
+        </p-galleria>
+      </div>
+    </div>
+  </p-panel>
+</div>
