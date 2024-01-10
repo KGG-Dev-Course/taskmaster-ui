@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,6 +22,7 @@ export class ProfileEditComponent {
   profile: Profile | undefined;
 
   constructor(
+    private http: HttpClient,
     private formBuilder: FormBuilder,
     private userService: UserService,
     private profileService: ProfileService,

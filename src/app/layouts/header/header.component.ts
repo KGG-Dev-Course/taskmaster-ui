@@ -58,6 +58,11 @@ export class HeaderComponent {
         routerLink: '/profile/view'
       },
       {
+        label: 'My gallery',
+        icon: 'pi pi-images',
+        routerLink: '/gallery/list'
+      },
+      {
         label: 'Log out',
         icon: 'pi pi-sign-out',
         command: () => {
