@@ -1,3 +1,4 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
@@ -12,7 +13,11 @@ export class HeaderComponent {
   menus: MenuItem[] = [];
   rightMenus: MenuItem[] = [];
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private socialAuthService: SocialAuthService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -73,6 +78,7 @@ export class HeaderComponent {
   }
 
   logout() {
+    this.socialAuthService.signOut();
     this.authService.logout();
     this.router.navigate(['/auth/login']);
   }
