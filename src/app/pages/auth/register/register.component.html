@@ -1,5 +1,5 @@
 <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()" class="mt-24 flex justify-center items-center w-full h-full">
-  <p-card class="w-[360px]">
+  <p-card class="w-[450px]">
     <ng-template pTemplate="header">
       <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
     </ng-template>
@@ -25,6 +25,11 @@
     <ng-template pTemplate="footer">
       <div class="flex flex-col gap-2 items-center w-full">
         <button type="submit" pButton label="Submit" class="p-button-success w-full"></button>
+        <p-divider layout="horizontal" align="center" class="w-full"><b>OR</b></p-divider>
+        <div class="flex flex-row gap-2 w-full">
+          <asl-google-signin-button type="standard" size="large" text="signin_with"></asl-google-signin-button>
+          <button type="button" label="Continue with Facebook" pButton icon="pi pi-facebook" class="w-full px-3 py-2 text-sm" (click)="signUpWithFB()"></button>
+        </div>
         <a routerLink="/auth/login">Go to login</a>
       </div>
     </ng-template>

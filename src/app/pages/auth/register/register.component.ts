@@ -1,3 +1,4 @@
+import { FacebookLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -14,7 +15,8 @@ export class RegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private socialAuthService: SocialAuthService,
   ) {
   }
 
@@ -23,6 +25,18 @@ export class RegisterComponent {
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
+    });
+
+    this.socialAuthService.authState.subscribe((user) => {
+      if (user) {
+        this.registerForm.patchValue({
+          email: user.email,
+          username: user.email.split('@')[0],
+          password: "Password!" + user.id
+        });
+
+        this.onRegisterSubmit();
+      }
     });
   }
 
@@ -46,5 +60,9 @@ export class RegisterComponent {
     } else {
       console.log('Invalid form. Please check fields.');
     }
+  }
+
+  signUpWithFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 }

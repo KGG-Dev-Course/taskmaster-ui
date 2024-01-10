@@ -1,3 +1,4 @@
+import { FacebookLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,6 +17,7 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private messageService: MessageService,
     private authService: AuthService,
+    private socialAuthService: SocialAuthService,
     private router: Router
   ) {
   }
@@ -24,6 +26,17 @@ export class LoginComponent {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
+    });
+
+    this.socialAuthService.authState.subscribe((user) => {
+      if (user) {
+        this.loginForm.patchValue({
+          username: user.email.split('@')[0],
+          password: "Password!" + user.id
+        });
+
+        this.onLoginSubmit();
+      }
     });
   }
 
@@ -44,5 +57,9 @@ export class LoginComponent {
     } else {
       console.log('Invalid form. Please check fields.');
     }
+  }
+
+  signInWithFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 }

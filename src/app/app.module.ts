@@ -1,4 +1,5 @@
 import {
+  FacebookLoginProvider,
   GoogleInitOptions,
   GoogleLoginProvider,
   GoogleSigninButtonModule,
@@ -116,6 +117,10 @@ const googleLoginOptions: GoogleInitOptions = {
               environment.googleClientId,
               googleLoginOptions
             )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(environment.facebookClientId)
           }
         ],
         onError: (err) => {
