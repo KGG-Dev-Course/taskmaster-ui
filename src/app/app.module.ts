@@ -5,6 +5,7 @@ import {
   GoogleSigninButtonModule,
   SocialAuthServiceConfig
 } from '@abacritt/angularx-social-login';
+import { NgOptimizedImage } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -103,7 +104,8 @@ const googleLoginOptions: GoogleInitOptions = {
     RadioButtonModule,
     GoogleSigninButtonModule,
     GalleriaModule,
-    FileUploadModule
+    FileUploadModule,
+    NgOptimizedImage
   ],
   providers: [
     {
