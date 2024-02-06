@@ -1,33 +1,40 @@
-<form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="mt-24 flex justify-center items-center w-full h-full">
-  <p-card class="w-[450px]">
-    <ng-template pTemplate="header">
-      <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
-    </ng-template>
-    <ng-template pTemplate="body">
-      <div class="flex flex-col gap-2">
-        <input type="text" pInputText formControlName="username" />
-        <div>
-          <div *ngIf="loginForm.get('username')?.hasError('required')">Username is required.</div>
-        </div>
-        <input type="password" pInputText formControlName="password" />
-        <div>
-          <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</div>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-      <div class="flex flex-col gap-2 items-center w-full">
-        <button type="submit" pButton label="Submit" class="p-button-success w-full"></button>
-        <p-divider layout="horizontal" align="center" class="w-full"><b>OR</b></p-divider>
-        <div class="flex flex-row gap-2 w-full">
-          <asl-google-signin-button type="standard" size="large" text="signin_with"></asl-google-signin-button>
-          <button type="button" label="Continue with Facebook" pButton icon="pi pi-facebook" class="w-full px-3 py-2 text-sm" (click)="signInWithFB()"></button>
-        </div>
-        <div class="flex justify-between w-full">
-          <a routerLink="/auth/forgot-password">Forgot password</a>
-          <a routerLink="/auth/register">Register</a>
+<div class="flex flex-col md:flex-row gap-2 md:gap-0 w-screen h-screen bg-no-repeat bg-cover bg-bottom" [style.background-image]="'url(/assets/background.png)'">
+  <div class="w-1/2 pt-[30px] pl-[40px]">
+    <a routerLink="/" class="flex flex-row gap-2 items-center no-underline">
+      <img ngSrc="/assets/logo.png" width="50" height="50" alt="logo">
+      <label class="text-blue-600 font-bold text-3xl cursor-pointer">Task Management</label>
+    </a>
+  </div>
+  <div class="flex items-center justify-center">
+    <div class="flex flex-col w-[80%] md:w-[539px] rounded-md bg-white bg-opacity-75 px-[27px] md:px-[44px] py-[44px]">
+      <div class="flex flex-row gap-2 items-center justify-between w-full">
+        <label class="font-bold text-xl">Welcome to <span class="text-blue-600">Task Management</span></label>
+        <div class="flex flex-col">
+          <label class="text-sm">No Account?</label>
+          <a routerLink="/auth/register">Sign up</a>
         </div>
       </div>
-    </ng-template>
-  </p-card>
-</form>
+      <label class="mt-4 text-[40px] md:text-[55px] font-bold text-black">Sign in</label>
+      <div class="mt-10 flex flex-row items-center gap-5 w-full">
+        <asl-google-signin-button type="standard" size="large" text="signin_with"></asl-google-signin-button>
+        <button type="button" pButton icon="pi pi-facebook" class="px-3 py-2 text-sm border-none" (click)="signInWithFB()"></button>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="mt-5 md:mt-[50px] flex flex-col gap-4 md:gap-9 w-full">
+        <div class="flex flex-col gap-[13px] w-full">
+          <label class="text-sm text-black">Enter your username</label>
+          <input type="text" pInputText formControlName="username" placeholder="Username" />
+        </div>
+        <div class="flex flex-col gap-[13px] w-full">
+          <label class="text-sm text-black">Enter your password</label>
+          <input type="password" pInputText formControlName="password" placeholder="Password" />
+          <div class="flex justify-end">
+            <a routerLink="/auth/forgot-password" class="text-[#4285F4]">Forgot password</a>
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <button type="submit" pButton label="Sign in" class="w-[236px] bg-[#779341] text-sm text-white border-none"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
