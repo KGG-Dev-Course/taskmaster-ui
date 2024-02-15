@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4 flex flex-col gap-5 w-full">
+  <div class="flex justify-between items-end">
+    <p-breadcrumb class="max-w-full" [model]="breadcrumbs" [home]="homeBreadcrumb"></p-breadcrumb>
+    <div class="flex flex-row gap-2">
+      <p-button type="submit" icon="pi pi-save" label="Save" size="small" severity="success"></p-button>
+      <p-button routerLink="/admin/ticket/list" icon="pi pi-times" label="Cancel" size="small" severity="secondary"></p-button>
+    </div>
+  </div>
+  <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2">
+      <label for="title">Title</label>
+      <input type="text" id="title" pInputText formControlName="title" />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="description">Description</label>
+      <p-editor class="ng-invalid ng-dirty" id="description" formControlName="description" [style]="{ height: '400px' }"></p-editor>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="dueDate">Due Date</label>
+      <p-calendar id="dueDate" [iconDisplay]="'input'" [showIcon]="true" formControlName="dueDate"></p-calendar>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="status">Status</label>
+      <p-dropdown id="status" [options]="['Pending', 'Open', 'InProgress', 'Complete']" placeholder="Select a Status" formControlName="status"></p-dropdown>
+    </div>
+  </div>
+</form>

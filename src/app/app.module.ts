@@ -1,111 +1,56 @@
 import {
   FacebookLoginProvider,
   GoogleInitOptions,
-  GoogleLoginProvider,
-  GoogleSigninButtonModule,
+  GoogleLoginProvider, GoogleSigninButtonModule,
   SocialAuthServiceConfig
 } from '@abacritt/angularx-social-login';
 import { NgOptimizedImage } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { AvatarModule } from 'primeng/avatar';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { CalendarModule } from 'primeng/calendar';
-import { CardModule } from 'primeng/card';
-import { ChipModule } from 'primeng/chip';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { DialogModule } from 'primeng/dialog';
-import { DividerModule } from 'primeng/divider';
-import { DropdownModule } from 'primeng/dropdown';
-import { EditorModule } from 'primeng/editor';
-import { FileUploadModule } from 'primeng/fileupload';
-import { GalleriaModule } from 'primeng/galleria';
-import { InputMaskModule } from 'primeng/inputmask';
+import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { MenuModule } from 'primeng/menu';
-import { MenubarModule } from 'primeng/menubar';
-import { PanelModule } from 'primeng/panel';
-import { PanelMenuModule } from 'primeng/panelmenu';
-import { PasswordModule } from 'primeng/password';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { TableModule } from 'primeng/table';
-import { TagModule } from 'primeng/tag';
-import { ToastModule } from 'primeng/toast';
 import { environment } from '../environments/environment';
-
+import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './layouts/header/header.component';
-import { LoginComponent } from './pages/auth/login/login.component';
-import { RegisterComponent } from './pages/auth/register/register.component';
-import { TicketAddComponent } from './pages/ticket/ticket-add/ticket-add.component';
-import { TicketEditComponent } from './pages/ticket/ticket-edit/ticket-edit.component';
-import { TicketListComponent } from './pages/ticket/ticket-list/ticket-list.component';
-import { AuthInterceptor } from './services/auth/auth.interceptor';
-import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
-import { UserListComponent } from './pages/user/user-list/user-list.component';
-import { UserAddComponent } from './pages/user/user-add/user-add.component';
-import { ProfileViewComponent } from './pages/profile/profile-view/profile-view.component';
-import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.component';
-import { GalleryListComponent } from './pages/gallery/gallery-list/gallery-list.component';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { loggingInterceptor } from './core/interceptors/logging.interceptor';
+import { UserModule } from './user/user.module';
+import { LoginPageComponent } from './shared/pages/login-page/login-page.component';
+import { ForgotPasswordPageComponent } from './shared/pages/forgot-password-page/forgot-password-page.component';
+import { RegisterPageComponent } from './shared/pages/register-page/register-page.component';
 
 const googleLoginOptions: GoogleInitOptions = {
   oneTapEnabled: false,
   scopes: 'https://www.googleapis.com/auth/photoslibrary.readonly'
 };
 
+const PRIMENG_MODULES: any[] = [
+  ButtonModule,
+  InputTextModule,
+  NgOptimizedImage,
+];
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    HeaderComponent,
-    TicketListComponent,
-    TicketAddComponent,
-    TicketEditComponent,
-    ForgotPasswordComponent,
-    UserListComponent,
-    UserAddComponent,
-    ProfileViewComponent,
-    ProfileEditComponent,
-    GalleryListComponent
+    LoginPageComponent,
+    ForgotPasswordPageComponent,
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AdminModule,
+    UserModule,
     AppRoutingModule,
-    CalendarModule,
-    FormsModule,
-    InputTextModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    ToastModule,
-    TableModule,
-    DialogModule,
-    PanelMenuModule,
-    MenubarModule,
-    BreadcrumbModule,
-    TagModule,
-    EditorModule,
-    DropdownModule,
-    ConfirmDialogModule,
-    MenuModule,
-    AvatarModule,
-    CardModule,
-    ChipModule,
-    PasswordModule,
-    DividerModule,
-    PanelModule,
-    InputMaskModule,
-    RadioButtonModule,
     GoogleSigninButtonModule,
-    GalleriaModule,
-    FileUploadModule,
-    NgOptimizedImage
+    ...PRIMENG_MODULES,
   ],
   providers: [
     {
@@ -130,13 +75,9 @@ const googleLoginOptions: GoogleInitOptions = {
         }
       } as SocialAuthServiceConfig,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
+    provideHttpClient(withInterceptors([authInterceptor, loggingInterceptor])),
     MessageService,
-    ConfirmationService
+    ConfirmationService,
   ],
   bootstrap: [AppComponent]
 })
